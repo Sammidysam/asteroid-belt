@@ -6,6 +6,7 @@ Topics = new Meteor.Collection("topics");
  *     this name will be seen on the list of topics
  *   description: a string of the description of this topic
  *     this will be shown when the given topic is selected to be voted on
+ *   completed: a boolean of if the topic is completed or not
  *   options: an array of all of the options of this topic
  *     each option has
  *       id: its id (will be an incremented integer starting at 0)
@@ -14,6 +15,7 @@ Topics = new Meteor.Collection("topics");
  * Example:
  *   name: "ACSL President '15--'16"
  *   description: "Who should be the ACSL President for the school year of 2015--2016?"
+ *   completed: false
  *   options: [
  *       {
  *           "name": "Sam Craig",
