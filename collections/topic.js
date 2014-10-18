@@ -8,7 +8,7 @@ Topics = new Meteor.Collection("topics");
  *     this will be shown when the given topic is selected to be voted on
  *   options: an array of all of the options of this topic
  *     each option has
- *       id: its id
+ *       id: its id (will be an incremented integer starting at 0)
  *       name: its name
  *
  * Example:
