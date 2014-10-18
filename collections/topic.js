@@ -14,4 +14,10 @@ Topics = new Meteor.Collection("topics");
  * Example:
  *   name: "ACSL President '15--'16"
  *   description: "Who should be the ACSL President for the school year of 2015--2016?"
+ *   options: [
+ *       {
+ *           "name": "Sam Craig",
+ *           "id": "some_id"
+ *       }
+ *   ]
  */
