@@ -9,7 +9,13 @@
 <template name="list">
 	<ul>
 		{{#each topics}}
-			
+			{{> topic}}
 		{{/each}}
 	</ul>
+</template>
+
+<template name="topic">
+	<div class="topic">
+		<span class="name">{{name}}</span>
+	</div>
 </template>
