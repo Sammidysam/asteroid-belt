@@ -1,12 +1,21 @@
+Template.navigator.helpers({
+	selected: function () {
+		return Session.get("selectedTopic") || Session.get("creating");
+	},
+	topicSelected: function () {
+		return Session.get("selectedTopic");
+	}
+});
+
 Template.list.helpers({
 	topics: function () {
 		return Topics.find({});
 	}
 });
 
-Template.topic.events({
+Template.topiclink.events({
 	"click": function () {
-		Session.set("selected_topic", this._id);
+		Session.set("selectedTopic", this._id);
 	}
 });
 

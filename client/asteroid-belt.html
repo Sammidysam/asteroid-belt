@@ -3,20 +3,32 @@
 </head>
 
 <body>
-	{{> list}}
-
-	{{> newlink}}
+	{{> navigator}}
 </body>
+
+<template name="navigator">
+	{{#if selected}}
+		{{#if topicSelected}}
+			{{> topic}}
+		{{else}}
+			{{> new}}
+		{{/if}}
+	{{else}}
+		{{> list}}
+	{{/if}}
+</template>
 
 <template name="list">
 	<ul>
 		{{#each topics}}
-			{{> topic}}
+			{{> topiclink}}
 		{{/each}}
+
+		{{> newlink}}
 	</ul>
 </template>
 
-<template name="topic">
+<template name="topiclink">
 	<div class="clickable">
 		<span>{{name}}</span>
 	</div>
