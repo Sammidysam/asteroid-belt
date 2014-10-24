@@ -9,3 +9,9 @@ Template.topic.events({
 		Session.set("selected_topic", this._id);
 	}
 });
+
+Template.newlink.events({
+	"click": function () {
+		Session.set("creating", true);
+	}
+});
