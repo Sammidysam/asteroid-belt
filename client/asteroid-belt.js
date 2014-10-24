@@ -1,6 +1,8 @@
-Template.list.topics = function () {
-	return Topics.find({});
-};
+Template.list.helpers({
+	topics: function () {
+		return Topics.find({});
+	}
+});
 
 Template.topic.events({
 	"click": function () {
