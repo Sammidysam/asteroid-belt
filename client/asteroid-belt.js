@@ -24,3 +24,11 @@ Template.newlink.events({
 		Session.set("creating", true);
 	}
 });
+
+// Templates that correspond to all files below.
+Template.back.events({
+	"click": function () {
+		Session.set("selectedTopic", null);
+		Session.set("creating", null);
+	}
+});
