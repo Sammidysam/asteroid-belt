@@ -1,0 +1,21 @@
+<template name="list">
+	<ul>
+		{{#each topics}}
+			<li>{{> listTopic}}</li>
+		{{/each}}
+
+		<li>{{> listNewTopic}}</li>
+	</ul>
+</template>
+
+<template name="listTopic">
+	<div class="clickable">
+		<span>{{name}}</span>
+	</div>
+</template>
+
+<template name="listNewTopic">
+	<div class="clickable">
+		New Topic
+	</div>
+</template>

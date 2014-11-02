@@ -3,44 +3,8 @@
 </head>
 
 <body>
-	{{> navigator}}
 </body>
 
-<template name="navigator">
-	{{#if selected}}
-		{{#if topicSelected}}
-			{{> topic}}
-		{{else}}
-			{{> new}}
-		{{/if}}
-	{{else}}
-		{{> list}}
-	{{/if}}
-</template>
-
-<template name="list">
-	<ul>
-		{{#each topics}}
-			{{> topiclink}}
-		{{/each}}
-
-		{{> newlink}}
-	</ul>
-</template>
-
-<template name="topiclink">
-	<div class="clickable">
-		<span>{{name}}</span>
-	</div>
-</template>
-
-<template name="newlink">
-	<div class="clickable">
-		New Topic
-	</div>
-</template>
-
-<!--  Templates that correspond to all files below. -->
 <template name="back">
 	<div class="clickable">
 		Back
