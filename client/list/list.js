@@ -10,6 +10,12 @@ Template.listTopic.events({
 	}
 });
 
+Template.listTopicDelete.events({
+	"click": function () {
+		Topics.remove(this._id);
+	}
+});
+
 Template.listNewTopic.events({
 	"click": function () {
 		Router.go("/topics/new");
