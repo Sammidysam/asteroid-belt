@@ -1,3 +1,30 @@
 <template name="topicNew">
 	{{> back}}
+
+	{{> topicNewForm}}
+</template>
+
+<template name="topicNewForm">
+	<form id="newTopic">
+		<label for="name">Short Name</label>
+		<br>
+		This is what shows up when this item is in an index.
+		A good example is <i>ACSL President '15--'16</i>.
+		<br>
+		<input type="text" name="name" />
+
+		<br>
+
+		<label for="description">Description (optional)</label>
+		<br>
+		This is where you can put a bigger description about what your vote is for.
+		You could put this as a question to which your vote will be.
+		Using the example above, this could be <i>Who should be the president of ACSL for the 2015 through 2016 school year?</i>.
+		<br>
+		<input type="text" name="description" />
+
+		<br>
+		
+		<input type="submit" id="submit" value="Create Topic" />
+	</form>
 </template>
