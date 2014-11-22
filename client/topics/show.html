@@ -2,8 +2,10 @@
 	{{> back}}
 
 	<b>{{name}}</b>
-	<br>
-	{{description}}
+	{{#if description}}
+		<br>
+		{{description}}
+	{{/if}}
 
 	<ul>
 		{{#each options}}
