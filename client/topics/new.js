@@ -8,11 +8,13 @@ Template.topicNewForm.events({
 			forms[this.name] = this.value;
 		});
 
-		Topics.insert(forms, function (err) {
-			alert(err);
+		Topics.insert(forms, function (err, id) {
+			if (err) {
+				alert(err);
+			} else if (id) {
+				Router.go("/topics/" + id);
+			}
 		});
-
-		Router.go("/");
 	}
 });
 
