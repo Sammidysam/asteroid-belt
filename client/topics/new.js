@@ -3,10 +3,19 @@ Template.topicNewForm.events({
 		event.preventDefault();
 		
 		form = {};
+		options = [];
 
 		$.each($("#newTopic").serializeArray(), function () {
-			form[this.name] = this.value;
+			if (this.name.indexOf("option") > -1) {
+				options.push({
+					_id: this.name.slice(-1),
+					name: this.value
+				});
+			} else {
+				form[this.name] = this.value;
+			}
 		});
+		form["options"] = options;
 
 		Topics.insert(form, function (err, id) {
 			if (err) {
@@ -20,6 +29,8 @@ Template.topicNewForm.events({
 
 Template.topicNewFormOptionsButton.events({
 	"click": function () {
-		$(".options ol").append("<li><input type=\"text\" name=\"option" + $(".options ol").children().length + "\" /></li>");
+		var list = $(".options ol");
+		
+		list.append("<li><input type=\"text\" name=\"option" + list.children().length + "\" /></li>");
 	}
 });
