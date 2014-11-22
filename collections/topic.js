@@ -9,7 +9,7 @@ Topics = new Meteor.Collection("topics");
  *   completed: a boolean of if the topic is completed or not
  *   options: an array of all of the options of this topic
  *     each option has
- *       id: its id (will be an incremented integer starting at 0)
+ *       _id: its id (will be an incremented integer starting at 0)
  *       name: its name
  *
  * Example:
