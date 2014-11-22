@@ -2,13 +2,13 @@ Template.topicNewForm.events({
 	"submit": function (event) {
 		event.preventDefault();
 		
-		forms = {};
+		form = {};
 
 		$.each($("#newTopic").serializeArray(), function () {
-			forms[this.name] = this.value;
+			form[this.name] = this.value;
 		});
 
-		Topics.insert(forms, function (err, id) {
+		Topics.insert(form, function (err, id) {
 			if (err) {
 				alert(err);
 			} else if (id) {
