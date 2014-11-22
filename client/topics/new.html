@@ -24,7 +24,30 @@
 		<input type="text" name="description" />
 
 		<br>
+
+		{{> topicNewFormOptions}}
+
+		<br>
 		
 		<input type="submit" id="submit" value="Create Topic" />
 	</form>
+</template>
+
+<template name="topicNewFormOptions">
+	<b>Options</b>
+	<div class="options">
+		<ol>
+			<li>
+				<input type="text" name="option0" />
+			</li>
+		</ol>
+	</div>
+
+	{{> topicNewFormOptionsButton}}
+</template>
+
+<template name="topicNewFormOptionsButton">
+	<div class="clickable">
+		+
+	</div>
 </template>

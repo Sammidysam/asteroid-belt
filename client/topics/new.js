@@ -15,3 +15,9 @@ Template.topicNewForm.events({
 		Router.go("/");
 	}
 });
+
+Template.topicNewFormOptionsButton.events({
+	"click": function () {
+		$(".options ol").append("<li><input type=\"text\" name=\"option" + $(".options ol").children().length + "\" /></li>");
+	}
+});
