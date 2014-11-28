@@ -10,8 +10,12 @@
 	<ul>
 		{{#each options}}
 			<li>
-				{{name}}
+				{{> topicShowOption}}
 			</li>
 		{{/each}}
 	</ul>
+</template>
+
+<template name="topicShowOption">
+	{{name}} - {{votes}} votes
 </template>
