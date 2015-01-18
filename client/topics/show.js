@@ -27,7 +27,7 @@ Template.topicShowOption.events({
 		Votes.insert({
 			topic_id: topicId,
 			option_id: this._id
-		}, function (err, id) {
+		}, function (err) {
 			if (err)
 				alert(err);
 		});
