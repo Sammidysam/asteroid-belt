@@ -19,7 +19,7 @@ Topics = new Meteor.Collection("topics");
  *   options: [
  *       {
  *           "name": "Sam Craig",
- *           "id": "some_id"
+ *           "_id": "some_id"
  *       }
  *   ]
  */
