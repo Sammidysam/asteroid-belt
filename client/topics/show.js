@@ -1,5 +1,5 @@
 Template.topicShow.helpers({
-	sortedOptions: function () {
+	betterOptions: function () {
 		var topicId = this._id;
 		var options = this.options;
 		
@@ -8,6 +8,7 @@ Template.topicShow.helpers({
 		 * This will also be used in the template of the options.
 		 */
 		$.each(options, function () {
+			this.topicId = topicId;
 			this.votes = Votes.find({
 				topic_id: topicId,
 				option_id: this._id
@@ -22,10 +23,8 @@ Template.topicShow.helpers({
 
 Template.topicShowOption.events({
 	"click": function (event) {
-		var topicId = window.location.href.split("/").slice(-1)[0];
-		
 		Votes.insert({
-			topic_id: topicId,
+			topic_id: this.topicId,
 			option_id: this._id
 		}, function (err) {
 			if (err)
