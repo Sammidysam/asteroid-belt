@@ -25,6 +25,7 @@ Template.topicNewForm.events({
 				form[this.name] = this.value;
 			}
 		});
+		form["admins"] = admins;
 		form["options"] = options;
 
 		Topics.insert(form, function (err, id) {
