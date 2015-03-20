@@ -8,6 +8,7 @@ Votes = new Meteor.Collection("votes");
  *   creator: the email of the user who created this vote
  *
  * Example:
- *   topic_id: some_id
- *   option_id: some_id
+ *   topic_id: some_id,
+ *   option_id: some_id,
+ *   creator: some_email
  */
