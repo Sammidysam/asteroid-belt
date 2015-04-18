@@ -4,7 +4,9 @@
 			<li>{{> listTopic}}</li>
 		{{/each}}
 
-		<li>{{> listNewTopic}}</li>
+		{{#if currentUser}}
+			<li>{{> listNewTopic}}</li>
+		{{/if}}
 	</ul>
 </template>
 
