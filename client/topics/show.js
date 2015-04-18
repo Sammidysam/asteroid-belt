@@ -32,6 +32,13 @@ Template.topicShowOption.helpers({
 	isAdmin: function () {
 		userChangeDep.depend();
 		return Session.get("userEmail") && this.admins.indexOf(Session.get("userEmail")) > -1;
+	},
+	cssClass: function () {
+		if (Meteor.user()) {
+			return "clickable";
+		} else {
+			return "";
+		}
 	}
 });
 
