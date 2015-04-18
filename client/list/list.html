@@ -12,7 +12,9 @@
 	<div class="clickable">
 		<span>{{name}}</span>
 	</div>
-	{{> listTopicDelete}}
+	{{#if isAdmin}}
+		{{> listTopicDelete}}
+	{{/if}}
 </template>
 
 <template name="listTopicDelete">

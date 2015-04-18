@@ -10,6 +10,12 @@ Template.listTopic.events({
 	}
 });
 
+Template.listTopic.helpers({
+	isAdmin: function () {
+		return this.admins.indexOf(Session.get("userEmail")) > -1;
+	}
+});
+
 Template.listTopicDelete.events({
 	"click": function () {
 		Topics.remove(this._id);

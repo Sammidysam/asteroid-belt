@@ -13,21 +13,27 @@
 		{{/each}}
 	</ul>
 
-	<b>Admins</b>
+	{{#if isAdmin}}
+		<b>Admins</b>
 
-	<ul>
-		{{#each admins}}
-			<li>
-				{{this}}
-			</li>
-		{{/each}}
-	</ul>
+		<ul>
+			{{#each admins}}
+				<li>
+					{{this}}
+				</li>
+			{{/each}}
+		</ul>
+	{{/if}}
 </template>
 
 <template name="topicShowOption">
 	<div class="clickable">
 		<li>
-			{{name}} - {{votes}} votes
+			{{name}}
+			{{#if isAdmin}}
+				-
+				{{votes}} votes
+			{{/if}}
 		</li>
 	</div>
 </template>
