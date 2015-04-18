@@ -27,13 +27,11 @@
 </template>
 
 <template name="topicShowOption">
-	<div class="{{cssClass}}">
-		<li>
-			{{name}}
-			{{#if isAdmin}}
-				-
-				{{votes}} votes
-			{{/if}}
-		</li>
-	</div>
+	<li class="{{cssClass}}">
+		{{name}}
+		{{#if isAdmin}}
+			-
+			{{votes}} votes
+		{{/if}}
+	</li>
 </template>
