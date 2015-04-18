@@ -13,7 +13,7 @@ Template.listTopic.events({
 Template.listTopic.helpers({
 	isAdmin: function () {
 		userChangeDep.depend();
-		return this.admins.indexOf(Session.get("userEmail")) > -1;
+		return Session.get("userEmail") && this.admins.indexOf(Session.get("userEmail")) > -1;
 	}
 });
 
