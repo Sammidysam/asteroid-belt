@@ -1,14 +1,11 @@
-Meteor.call("getEmail", function (error, result) {	
-	if (error)
-		alert(error);
-	else if (result)
-		$("#firstAdmin").val(result);
+Template.topicNewForm.onRendered(function () {
+	$("#firstAdmin").val(Session.get("userEmail"));
 });
 
 Template.topicNewForm.events({
 	"submit": function (event) {
 		event.preventDefault();
-		
+
 		form = {};
 		admins = [];
 		options = [];
