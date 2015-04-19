@@ -81,10 +81,10 @@ Template.topicShowOption.events({
 			topic_id: this.topicId,
 			option_id: this._id
 		};
-		if (myEmail)
-			vote.creator_email = myEmail;
 
 		if (myEmail && !this.completed && !Votes.findOne(vote)) {
+			vote.creator_email = myEmail;
+
 			Votes.insert(vote, function (err) {
 				if (err)
 					alert(err);
