@@ -1,5 +1,7 @@
 Template.topicShow.helpers({
 	betterOptions: function () {
+		userChangeDep.depend();
+
 		var topicId = this._id;
 		var options = this.options;
 		var admin_emails = this.admin_emails;
@@ -18,9 +20,14 @@ Template.topicShow.helpers({
 			}).count();
 		});
 
-		return options.sort(function (a, b) {
-			return b.votes - a.votes;
-		});
+		var isAdmin = Session.get("userEmail") && admin_emails.indexOf(Session.get("userEmail")) > -1;
+		if (isAdmin) {
+			options.sort(function (a, b) {
+				return b.votes - a.votes;
+			});
+		}
+
+		return options;
 	},
 	isAdmin: function () {
 		userChangeDep.depend();
