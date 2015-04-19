@@ -5,3 +5,13 @@ li.myvote {
 li.notmyvote {
 	color: red;
 }
+
+li.victor {
+	color: green;
+	font-weight: bold;
+}
+
+li.loser {
+	color: red;
+	text-decoration: line-through;
+}

@@ -5,6 +5,7 @@ Template.topicShow.helpers({
 		var topicId = this._id;
 		var options = this.options;
 		var admin_emails = this.admin_emails;
+		var completed = this.completed;
 
 		/*
 		 * First, add a votes field to all of the options.
@@ -14,16 +15,21 @@ Template.topicShow.helpers({
 		$.each(options, function () {
 			this.topicId = topicId;
 			this.admin_emails = admin_emails;
+			this.completed = completed;
 			this.votes = Votes.find({
 				topic_id: topicId,
 				option_id: this._id
 			}).count();
 		});
 
-		if (isAdminFunction(admin_emails)) {
+		// If we can see the number of votes per candidate, sort them.
+		if (this.completed || isAdminFunction(admin_emails)) {
 			options.sort(function (a, b) {
 				return b.votes - a.votes;
 			});
+
+			for (var i = 0; i < options.length; i++)
+				options[i].index = i;
 		}
 
 		return options;
@@ -35,28 +41,32 @@ Template.topicShow.helpers({
 });
 
 Template.topicShowOption.helpers({
-	isAdmin: function () {
+	canSeeVotes: function () {
 		userChangeDep.depend();
-		return isAdminFunction(this.admin_emails);
+		return this.completed || isAdminFunction(this.admin_emails);
 	},
 	cssClass: function () {
-		var myEmail = Session.get("userEmail");
-		if (myEmail) {
-			var vote = Votes.findOne({
-				topic_id: this.topicId,
-				creator_email: myEmail
-			});
-
-			if (vote) {
-				if (vote.option_id == this._id)
-					return "myvote";
-				else
-					return "notmyvote";
-			} else {
-				return "clickable";
-			}
+		if (this.completed) {
+			return this.index == 0 ? "victor" : "loser";
 		} else {
-			return "";
+			var myEmail = Session.get("userEmail");
+			if (myEmail) {
+				var vote = Votes.findOne({
+					topic_id: this.topicId,
+					creator_email: myEmail
+				});
+
+				if (vote) {
+					if (vote.option_id == this._id)
+						return "myvote";
+					else
+						return "notmyvote";
+				} else {
+					return "clickable";
+				}
+			} else {
+				return "";
+			}
 		}
 	}
 });
@@ -75,5 +85,11 @@ Template.topicShowOption.events({
 			if (err)
 				alert(err);
 		});
+	}
+});
+
+Template.topicShowCompleteButton.events({
+	"click": function (event) {
+		Topics.update(this._id, { $set: { completed: true } });
 	}
 });

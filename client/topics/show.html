@@ -23,15 +23,21 @@
 				</li>
 			{{/each}}
 		</ul>
+
+		{{> topicShowCompleteButton}}
 	{{/if}}
 </template>
 
 <template name="topicShowOption">
 	<li class="{{cssClass}}">
 		{{name}}
-		{{#if isAdmin}}
+		{{#if canSeeVotes}}
 			-
 			{{votes}} votes
 		{{/if}}
 	</li>
+</template>
+
+<template name="topicShowCompleteButton">
+	<i class="clickable">End voting on this topic</i>
 </template>
