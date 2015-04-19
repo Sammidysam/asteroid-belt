@@ -1,5 +1,6 @@
 Router.configure({
-	layoutTemplate: "applicationLayout"
+	layoutTemplate: "applicationLayout",
+	loadingTemplate: "loadingLayout"
 });
 
 Router.route("/", function () {
@@ -7,7 +8,10 @@ Router.route("/", function () {
 });
 
 Router.route("/topics/new", function () {
-	this.render("topicNew");
+	if (!Meteor.user())
+		this.redirect("/");
+	else
+		this.render("topicNew");
 });
 
 Router.route("/topics/:id", function () {
