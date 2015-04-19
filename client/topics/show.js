@@ -84,10 +84,12 @@ Template.topicShowOption.events({
 		if (myEmail)
 			vote.creator_email = myEmail;
 
-		Votes.insert(vote, function (err) {
-			if (err)
-				alert(err);
-		});
+		if (myEmail && !this.completed && !Votes.findOne(vote)) {
+			Votes.insert(vote, function (err) {
+				if (err)
+					alert(err);
+			});
+		}
 	}
 });
 
