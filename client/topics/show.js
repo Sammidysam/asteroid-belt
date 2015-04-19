@@ -79,12 +79,13 @@ Template.topicShowOption.events({
 	"click": function (event) {
 		var myEmail = Session.get("userEmail");
 		var vote = {
-			topic_id: this.topicId,
-			option_id: this._id
+			topic_id: this.topicId
 		};
-
-		if (myEmail && !this.completed && !Votes.findOne(vote)) {
+		if (myEmail)
 			vote.creator_email = myEmail;
+
+		if (Meteor.user() && !this.completed && !Votes.findOne(vote)) {
+			vote.option_id = this._id;
 
 			Votes.insert(vote, function (err) {
 				if (err)
