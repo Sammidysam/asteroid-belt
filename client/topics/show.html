@@ -24,7 +24,9 @@
 			{{/each}}
 		</ul>
 
-		{{> topicShowCompleteButton}}
+		{{#if canSeeCompleteButton}}
+			{{> topicShowCompleteButton}}
+		{{/if}}
 	{{/if}}
 </template>
 

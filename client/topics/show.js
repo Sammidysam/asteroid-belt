@@ -37,6 +37,9 @@ Template.topicShow.helpers({
 	isAdmin: function () {
 		userChangeDep.depend();
 		return isAdminFunction(this.admin_emails);
+	},
+	canSeeCompleteButton: function () {
+		return !this.completed;
 	}
 });
 
