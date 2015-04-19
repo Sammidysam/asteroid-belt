@@ -20,8 +20,7 @@ Template.topicShow.helpers({
 			}).count();
 		});
 
-		var isAdmin = Session.get("userEmail") && admin_emails.indexOf(Session.get("userEmail")) > -1;
-		if (isAdmin) {
+		if (isAdminFunction(admin_emails)) {
 			options.sort(function (a, b) {
 				return b.votes - a.votes;
 			});
@@ -31,14 +30,14 @@ Template.topicShow.helpers({
 	},
 	isAdmin: function () {
 		userChangeDep.depend();
-		return Session.get("userEmail") && this.admin_emails.indexOf(Session.get("userEmail")) > -1;
+		return isAdminFunction(this.admin_emails);
 	}
 });
 
 Template.topicShowOption.helpers({
 	isAdmin: function () {
 		userChangeDep.depend();
-		return Session.get("userEmail") && this.admin_emails.indexOf(Session.get("userEmail")) > -1;
+		return isAdminFunction(this.admin_emails);
 	},
 	cssClass: function () {
 		var myEmail = Session.get("userEmail");

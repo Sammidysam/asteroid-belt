@@ -7,3 +7,7 @@ Deps.autorun(function () {
 	else
 		delete Session.keys["userEmail"];
 });
+
+isAdminFunction = function (admin_emails) {
+	return Session.get("userEmail") && admin_emails.indexOf(Session.get("userEmail")) > -1;
+};
