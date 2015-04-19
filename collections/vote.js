@@ -10,5 +10,5 @@ Votes = new Meteor.Collection("votes");
  * Example:
  *   topic_id: some_id,
  *   option_id: some_id,
- *   creator: some_email
+ *   creator_email: some_email
  */

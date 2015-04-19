@@ -34,8 +34,21 @@ Template.topicShowOption.helpers({
 		return Session.get("userEmail") && this.admins.indexOf(Session.get("userEmail")) > -1;
 	},
 	cssClass: function () {
-		if (Meteor.user()) {
-			return "clickable";
+		var myEmail = Session.get("userEmail");
+		if (myEmail) {
+			var vote = Votes.findOne({
+				topic_id: this.topicId,
+				creator_email: myEmail
+			});
+
+			if (vote) {
+				if (vote.option_id == this._id)
+					return "myvote";
+				else
+					return "notmyvote";
+			} else {
+				return "clickable";
+			}
 		} else {
 			return "";
 		}
@@ -44,10 +57,15 @@ Template.topicShowOption.helpers({
 
 Template.topicShowOption.events({
 	"click": function (event) {
-		Votes.insert({
+		var myEmail = Session.get("userEmail");
+		var vote = {
 			topic_id: this.topicId,
 			option_id: this._id
-		}, function (err) {
+		};
+		if (myEmail)
+			vote.creator_email = myEmail;
+
+		Votes.insert(vote, function (err) {
 			if (err)
 				alert(err);
 		});
