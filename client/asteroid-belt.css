@@ -5,3 +5,7 @@
 label {
 	font-weight: bold;
 }
+
+span.delete {
+    color: red;
+}

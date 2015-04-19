@@ -98,3 +98,10 @@ Template.topicShowCompleteButton.events({
 		Topics.update(this._id, { $set: { completed: true } });
 	}
 });
+
+Template.topicShowDeleteButton.events({
+	"click": function (event) {
+		Topics.remove(this._id);
+		Router.go("/");
+	}
+});

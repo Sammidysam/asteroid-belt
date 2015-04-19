@@ -1,6 +1,6 @@
 Template.list.helpers({
 	topics: function () {
-		return Topics.find({});
+		return Topics.find({}, { sort: ["completed"] });
 	}
 });
 

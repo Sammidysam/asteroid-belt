@@ -11,18 +11,14 @@
 </template>
 
 <template name="listTopic">
-	<div class="clickable">
-		<span>{{name}}</span>
-	</div>
+	<span class="clickable">{{name}}</span>
 	{{#if isAdmin}}
 		{{> listTopicDelete}}
 	{{/if}}
 </template>
 
 <template name="listTopicDelete">
-	<div class="clickable">
-		<span class="delete">Delete</span>
-	</div>
+	<span class="clickable delete">Delete</span>
 </template>
 
 <template name="listNewTopic">

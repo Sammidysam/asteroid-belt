@@ -27,6 +27,8 @@
 		{{#if canSeeCompleteButton}}
 			{{> topicShowCompleteButton}}
 		{{/if}}
+
+		{{> topicShowDeleteButton}}
 	{{/if}}
 </template>
 
@@ -42,4 +44,8 @@
 
 <template name="topicShowCompleteButton">
 	<i class="clickable">End voting on this topic</i>
+</template>
+
+<template name="topicShowDeleteButton">
+	<span class="clickable delete">Delete</span>
 </template>
