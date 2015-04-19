@@ -1,6 +1,9 @@
 Template.list.helpers({
 	topics: function () {
 		return Topics.find({}, { sort: ["completed"] });
+	},
+	completedClass: function () {
+		return this.completed ? "completed" : "";
 	}
 });
 

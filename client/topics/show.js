@@ -11,6 +11,7 @@ Template.topicShow.helpers({
 		 * First, add a votes field to all of the options.
 		 * This will also be used in the template of the options.
 		 * The admin_emails field will be used for checking if the user is an admin.
+		 * The completed field will be used for the same reason as previous line.
 		 */
 		$.each(options, function () {
 			this.topicId = topicId;

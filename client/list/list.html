@@ -1,7 +1,7 @@
 <template name="list">
 	<ul>
 		{{#each topics}}
-			<li>{{> listTopic}}</li>
+			<li class="{{completedClass}}">{{> listTopic}}</li>
 		{{/each}}
 
 		{{#if currentUser}}
