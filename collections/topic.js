@@ -7,7 +7,7 @@ Topics = new Meteor.Collection("topics");
  *   description: a string of the description of this topic
  *     this will be shown when the given topic is selected to be voted on
  *   completed: a boolean of if the topic is completed or not
- *   admins: an array of the emails of the admins of this topic
+ *   admin_emails: an array of the emails of the admins of this topic
  *   options: an array of all of the options of this topic
  *     each option has
  *       _id: its id (will be an incremented integer starting at 0)

@@ -2,16 +2,16 @@ Template.topicShow.helpers({
 	betterOptions: function () {
 		var topicId = this._id;
 		var options = this.options;
-		var admins = this.admins;
+		var admin_emails = this.admin_emails;
 
 		/*
 		 * First, add a votes field to all of the options.
 		 * This will also be used in the template of the options.
-		 * The admins field will be used for checking if the user is an admin.
+		 * The admin_emails field will be used for checking if the user is an admin.
 		 */
 		$.each(options, function () {
 			this.topicId = topicId;
-			this.admins = admins;
+			this.admin_emails = admin_emails;
 			this.votes = Votes.find({
 				topic_id: topicId,
 				option_id: this._id
@@ -24,14 +24,14 @@ Template.topicShow.helpers({
 	},
 	isAdmin: function () {
 		userChangeDep.depend();
-		return Session.get("userEmail") && this.admins.indexOf(Session.get("userEmail")) > -1;
+		return Session.get("userEmail") && this.admin_emails.indexOf(Session.get("userEmail")) > -1;
 	}
 });
 
 Template.topicShowOption.helpers({
 	isAdmin: function () {
 		userChangeDep.depend();
-		return Session.get("userEmail") && this.admins.indexOf(Session.get("userEmail")) > -1;
+		return Session.get("userEmail") && this.admin_emails.indexOf(Session.get("userEmail")) > -1;
 	},
 	cssClass: function () {
 		var myEmail = Session.get("userEmail");

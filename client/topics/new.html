@@ -25,30 +25,30 @@
 
 		<br>
 
-		{{> topicNewFormAdmins}}
+		{{> topicNewFormAdminEmails}}
 
 		<br>
 
 		{{> topicNewFormOptions}}
 
 		<br>
-		
+
 		<input type="submit" id="submit" value="Create Topic" />
 	</form>
 </template>
 
 <!-- Repetitive code here is bad! -->
-<template name="topicNewFormAdmins">
+<template name="topicNewFormAdminEmails">
 	<b>Admins</b>
-	<div class="admins">
+	<div class="adminEmails">
 		<ol>
 			<li>
-				<input type="text" name="admin0" id="firstAdmin" />
+				<input type="text" name="adminEmail0" value="{{myEmail}}" />
 			</li>
 		</ol>
 	</div>
 
-	{{> topicNewFormAdminsButton}}
+	{{> topicNewFormAdminEmailsButton}}
 </template>
 
 <template name="topicNewFormOptions">
@@ -64,7 +64,7 @@
 	{{> topicNewFormOptionsButton}}
 </template>
 
-<template name="topicNewFormAdminsButton">
+<template name="topicNewFormAdminEmailsButton">
 	<div class="clickable">
 		+
 	</div>

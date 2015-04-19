@@ -1,13 +1,9 @@
-Template.topicNewForm.onRendered(function () {
-	$("#firstAdmin").val(Session.get("userEmail"));
-});
-
 Template.topicNewForm.events({
 	"submit": function (event) {
 		event.preventDefault();
 
 		form = {};
-		admins = [];
+		admin_emails = [];
 		options = [];
 
 		$.each($("#newTopic").serializeArray(), function () {
@@ -16,13 +12,13 @@ Template.topicNewForm.events({
 					_id: this.name.slice(-1),
 					name: this.value
 				});
-			} else if (this.name.indexOf("admin") > -1) {
-				admins.push(this.value);
+			} else if (this.name.indexOf("adminEmail") > -1) {
+				admin_emails.push(this.value);
 			} else {
 				form[this.name] = this.value;
 			}
 		});
-		form["admins"] = admins;
+		form["admin_emails"] = admin_emails;
 		form["options"] = options;
 
 		Topics.insert(form, function (err, id) {
@@ -35,15 +31,21 @@ Template.topicNewForm.events({
 	}
 });
 
+Template.topicNewFormAdminEmails.helpers({
+	myEmail: function () {
+		return Session.get("userEmail");
+	}
+});
+
 listClick = function (type) {
 	var list = $("." + type + " ol");
 
 	list.append("<li><input type=\"text\" name=\"" + type + list.children().length + "\" /></li>");
 };
 
-Template.topicNewFormAdminsButton.events({
+Template.topicNewFormAdminEmailsButton.events({
 	"click": function () {
-		listClick("admins");
+		listClick("adminEmails");
 	}
 });
 
