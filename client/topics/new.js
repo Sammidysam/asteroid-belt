@@ -37,7 +37,7 @@ Template.topicNewFormAdminEmails.helpers({
 	}
 });
 
-function listClick(type) {
+function listClick (type) {
 	var list = $("." + type + " ol");
 
 	list.append("<li><input type=\"text\" name=\"" + type + list.children().length + "\" /></li>");

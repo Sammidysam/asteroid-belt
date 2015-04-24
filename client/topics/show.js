@@ -75,14 +75,20 @@ Template.topicShowOption.helpers({
 	}
 });
 
+function myVote (topicId) {
+	var myEmail = Session.get("userEmail");
+    var vote = {
+        topic_id: topicId
+    };
+    if (myEmail)
+        vote.creator_email = myEmail;
+
+	return vote;
+};
+
 Template.topicShowOption.events({
 	"click": function (event) {
-		var myEmail = Session.get("userEmail");
-		var vote = {
-			topic_id: this.topicId
-		};
-		if (myEmail)
-			vote.creator_email = myEmail;
+		var vote = myVote(this.topicId);
 
 		if (Meteor.user() && !this.completed && !Votes.findOne(vote)) {
 			vote.option_id = this._id;
@@ -92,6 +98,23 @@ Template.topicShowOption.events({
 					alert(err);
 			});
 		}
+	}
+});
+
+Template.topicShowDeleteVote.helpers({
+	canSeeDeleteVote: function () {
+		userChangeDep.depend();
+		return Meteor.user() && Votes.findOne(myVote(this._id));
+	}
+});
+
+Template.topicShowDeleteVote.events({
+	"click": function (event) {
+		var vote = Votes.findOne(myVote(this._id));
+
+        if (Meteor.user() && !this.completed && vote) {
+            Votes.remove(vote._id);
+        }
 	}
 });
 

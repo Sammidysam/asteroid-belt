@@ -13,6 +13,8 @@
 		{{/each}}
 	</ul>
 
+	<p>{{> topicShowDeleteVote}}</p>
+
 	{{#if isAdmin}}
 		<b>Admins</b>
 
@@ -44,10 +46,16 @@
 	</li>
 </template>
 
+<template name="topicShowDeleteVote">
+	{{#if canSeeDeleteVote}}
+		<i class="clickable delete">Delete Vote</i>
+	{{/if}}
+</template>
+
 <template name="topicShowCompleteButton">
 	<i class="clickable">End voting on this topic</i>
 </template>
 
 <template name="topicShowDeleteButton">
-	<span class="clickable delete">Delete</span>
+	<span class="clickable delete">Delete Topic</span>
 </template>
