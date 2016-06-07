@@ -12,3 +12,5 @@ iron:router
 accounts-google
 accounts-ui
 service-configuration
+standard-minifier-css
+standard-minifier-js
