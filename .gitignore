@@ -1,2 +1,3 @@
 .meteor/meteorite
 server/secret.js
+node_modules/
