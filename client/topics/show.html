@@ -41,7 +41,10 @@
 		{{name}}
 		{{#if canSeeVotes}}
 			-
-			{{votes}} votes
+			{{voting_percentage}}% of vote
+			{{#if isAdmin}}
+				({{votes}} votes of {{total_votes}})
+			{{/if}}
 		{{/if}}
 	</li>
 </template>

@@ -23,6 +23,18 @@ Template.topicShow.helpers({
 			}).count();
 		});
 
+		// Add voting percentage to each option.
+		// For future reference, probably should have made helpers.
+		$.each(options, function () {
+			this.total_votes = options.map(function (a) {
+				return a.votes;
+            }).reduce (function (a, b) {
+				return a + b;
+			});
+
+			this.voting_percentage = (this.votes / this.total_votes).toPrecision(2) * 100;
+		});
+
 		// If we can see the number of votes per candidate, sort them.
 		if (this.completed || isAdminFunction(admin_emails)) {
 			options.sort(function (a, b) {
@@ -72,7 +84,11 @@ Template.topicShowOption.helpers({
 				return "";
 			}
 		}
-	}
+	},
+	isAdmin: function () {
+        userChangeDep.depend();
+        return isAdminFunction(this.admin_emails);
+    }
 });
 
 function myVote (topicId) {
