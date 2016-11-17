@@ -1,3 +1,9 @@
+function totalVotes (topicId) {
+	return Votes.find({
+		topic_id: topicId
+	}).count();
+};
+
 Template.topicShow.helpers({
 	betterOptions: function () {
 		userChangeDep.depend();
@@ -21,18 +27,7 @@ Template.topicShow.helpers({
 				topic_id: topicId,
 				option_id: this._id
 			}).count();
-		});
-
-		// Add voting percentage to each option.
-		// For future reference, probably should have made helpers.
-		$.each(options, function () {
-			this.total_votes = options.map(function (a) {
-				return a.votes;
-            }).reduce (function (a, b) {
-				return a + b;
-			});
-
-			this.voting_percentage = (this.votes / this.total_votes).toPrecision(2) * 100;
+			this.voting_percentage = (this.votes / totalVotes(topicId)).toPrecision(2) * 100;
 		});
 
 		// If we can see the number of votes per candidate, sort them.
@@ -61,6 +56,9 @@ Template.topicShowOption.helpers({
 		userChangeDep.depend();
 		return this.completed || isAdminFunction(this.admin_emails);
 	},
+	totalVotes: function () {
+        return totalVotes(this.topicId);
+    },
 	cssClass: function () {
 		if (this.completed) {
 			return this.index == 0 ? "victor" : "loser";
