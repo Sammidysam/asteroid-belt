@@ -54,7 +54,11 @@ Template.topicShow.helpers({
 Template.topicShowOption.helpers({
 	canSeeVotes: function () {
 		userChangeDep.depend();
-		return this.completed || isAdminFunction(this.admin_emails);
+		return (isAdminFunction(this.admin_emails) || (this.completed && Topics.findOne(this.topicId).show_votes > 0)) && totalVotes(this.topicId) > 0;
+	},
+	canSeeVoteTotals: function () {
+		userChangeDep.depend();
+		return isAdminFunction(this.admin_emails) || Topics.findOne(this.topicId).show_votes > 1;
 	},
 	totalVotes: function () {
         return totalVotes(this.topicId);

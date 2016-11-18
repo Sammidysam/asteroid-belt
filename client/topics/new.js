@@ -20,6 +20,7 @@ Template.topicNewForm.events({
 		});
 		form["admin_emails"] = admin_emails;
 		form["options"] = options;
+		form["show_votes"] = parseInt(form["show_votes"]) || 0;
 
 		Topics.insert(form, function (err, id) {
 			if (err) {

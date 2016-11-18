@@ -24,6 +24,17 @@
 		<input type="text" name="description" />
 
 		<br>
+		<label for="show_votes">Show Votes</label>
+		<br>
+		When this vote is completed, select whether you would like to show vote totals and percentage, only percentage, or neither.
+		<br>
+		<input type="radio" name="show_votes" value="2">Show Vote Totals and Percentage
+		<br>
+		<input type="radio" name="show_votes" value="1">Show Only Vote Percentage
+		<br>
+		<input type="radio" name="show_votes" value="0" checked="true">Never Show Vote Data
+
+		<br>
 
 		{{> topicNewFormAdminEmails}}
 

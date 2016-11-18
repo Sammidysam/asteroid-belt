@@ -42,7 +42,9 @@
 		{{#if canSeeVotes}}
 			-
 			{{voting_percentage}}% of vote
-			({{votes}} of {{totalVotes}} votes)
+			{{#if canSeeVoteTotals}}
+				({{votes}} of {{totalVotes}} votes)
+			{{/if}}
 		{{/if}}
 	</li>
 </template>
