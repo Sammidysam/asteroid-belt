@@ -16,6 +16,7 @@ Topics.showVoteTypes = {
  *     0: show neither
  *     1: show only percentage
  *     2: show both vote totals and percentage
+ *   runoff_id: the id of a runoff vote, if one has been created
  *   admin_emails: an array of the emails of the admins of this topic
  *   options: an array of all of the options of this topic
  *     each option has

@@ -52,6 +52,9 @@ Template.topicShow.helpers({
 	canSeeRunoffButton: function () {
 		/* This is a check for if a runoff is feasible. */
 		var topicId = this._id;
+
+		var runoff = Topics.findOne(this.runoff_id);
+
 		var vote_totals = this.options.map(function (a) {
 			return a._id;
 		}).map(function (b) {
@@ -61,7 +64,7 @@ Template.topicShow.helpers({
 			}).count();
 		}).sort();
 
-		return this.completed && vote_totals.length > 2 && vote_totals[1] != vote_totals[2];
+		return this.completed && runoff == null && vote_totals.length > 2 && vote_totals[1] != vote_totals[2];
 	}
 });
 
@@ -165,6 +168,7 @@ Template.topicShowDeleteButton.events({
 
 Template.topicShowRunoffButton.events({
 	"click": function (event) {
+		var topicId = this._id;
 		var runoff = {};
 
 		/* Fill in the standard runoff details. */
@@ -184,6 +188,7 @@ Template.topicShowRunoffButton.events({
 			if (err) {
                 alert(err);
             } else if (id) {
+				Topics.update(topicId, { $set: { runoff_id: id } });
                 Router.go("/topics/" + id);
             }
 		});
