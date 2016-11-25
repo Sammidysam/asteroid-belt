@@ -30,6 +30,10 @@
 			{{> topicShowCompleteButton}}
 		{{/if}}
 
+		{{#if canSeeRunoffButton}}
+			{{> topicShowRunoffButton}}
+		{{/if}}
+
 		<p>
 			{{> topicShowDeleteButton}}
 		</p>
@@ -61,4 +65,8 @@
 
 <template name="topicShowDeleteButton">
 	<span class="clickable delete">Delete Topic</span>
+</template>
+
+<template name="topicShowRunoffButton">
+	<i class="clickable">Create a runoff between the top two options</i>
 </template>

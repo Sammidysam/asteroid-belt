@@ -48,6 +48,20 @@ Template.topicShow.helpers({
 	},
 	canSeeCompleteButton: function () {
 		return !this.completed;
+	},
+	canSeeRunoffButton: function () {
+		/* This is a check for if a runoff is feasible. */
+		var topicId = this._id;
+		var vote_totals = this.options.map(function (a) {
+			return a._id;
+		}).map(function (b) {
+			return Votes.find({
+				topic_id: topicId,
+				option_id: b
+			}).count();
+		}).sort();
+
+		return this.completed && vote_totals.length > 2 && vote_totals[1] != vote_totals[2];
 	}
 });
 
