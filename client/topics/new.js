@@ -2,9 +2,9 @@ Template.topicNewForm.events({
 	"submit": function (event) {
 		event.preventDefault();
 
-		form = {};
-		admin_emails = [];
-		options = [];
+		var form = {};
+		var admin_emails = [];
+		var options = [];
 
 		$.each($("#newTopic").serializeArray(), function () {
 			if (this.name.indexOf("option") > -1) {
