@@ -162,3 +162,30 @@ Template.topicShowDeleteButton.events({
 		Router.go("/");
 	}
 });
+
+Template.topicShowRunoffButton.events({
+	"click": function (event) {
+		var runoff = {};
+
+		/* Fill in the standard runoff details. */
+		runoff.name = this.name + " Runoff";
+		runoff.description = this.description;
+		runoff.completed = false;
+		runoff.show_votes = this.show_votes;
+		runoff.admin_emails = this.admin_emails;
+
+		/* Get the two highest voting options. */
+		var options = this.options.sort(function (a, b) {
+			return b.votes - a.votes;
+		});
+		runoff.options = options.slice(0, 2);
+
+		Topics.insert(runoff, function (err, id) {
+			if (err) {
+                alert(err);
+            } else if (id) {
+                Router.go("/topics/" + id);
+            }
+		});
+	}
+});
