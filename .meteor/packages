@@ -6,7 +6,7 @@
 standard-app-packages@1.0.9
 autopublish@1.0.7
 insecure@1.0.7
-coffeescript@1.11.1_3
+coffeescript@1.11.1_4
 iron:router
 
 accounts-google@1.0.11
