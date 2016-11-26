@@ -13,7 +13,7 @@
 		{{/each}}
 	</ul>
 
-	<p>{{> topicShowDeleteVote}}</p>
+	<p>{{> topicShowDeletePrompt}}</p>
 
 	{{#if isAdmin}}
 		<b>Admins</b>
@@ -53,9 +53,9 @@
 	</li>
 </template>
 
-<template name="topicShowDeleteVote">
-	{{#if canSeeDeleteVote}}
-		<i class="clickable delete">Delete Vote</i>
+<template name="topicShowDeletePrompt">
+	{{#if canSeeDeletePrompt}}
+		<i class="delete">Click on the vote to delete it</i>
 	{{/if}}
 </template>
 

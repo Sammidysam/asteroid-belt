@@ -93,7 +93,7 @@ Template.topicShowOption.helpers({
 
 				if (vote) {
 					if (vote.option_id == this._id)
-						return "myvote";
+						return "myvote clickable";
 					else
 						return "notmyvote";
 				} else {
@@ -110,46 +110,43 @@ Template.topicShowOption.helpers({
     }
 });
 
-function myVote (topicId) {
+function myVote (topicId, optionId) {
+	optionId = optionId || -1;
+
 	var myEmail = Session.get("userEmail");
     var vote = {
         topic_id: topicId
     };
     if (myEmail)
         vote.creator_email = myEmail;
+	if (optionId > -1)
+		vote.option_id = optionId;
 
 	return vote;
 };
 
 Template.topicShowOption.events({
 	"click": function (event) {
-		var vote = myVote(this.topicId);
+		var any_vote = myVote(this.topicId);
+		var completed_vote = Votes.findOne(myVote(this.topicId, this._id));
 
-		if (Meteor.user() && !this.completed && !Votes.findOne(vote)) {
-			vote.option_id = this._id;
+		if (Meteor.user() && !this.completed && !Votes.findOne(any_vote)) {
+			any_vote.option_id = this._id;
 
-			Votes.insert(vote, function (err) {
+			Votes.insert(any_vote, function (err) {
 				if (err)
 					alert(err);
 			});
+		} else if (Meteor.user() && !this.completed && completed_vote) {
+			Votes.remove(completed_vote._id);
 		}
 	}
 });
 
-Template.topicShowDeleteVote.helpers({
-	canSeeDeleteVote: function () {
+Template.topicShowDeletePrompt.helpers({
+	canSeeDeletePrompt: function () {
 		userChangeDep.depend();
 		return Meteor.user() && Votes.findOne(myVote(this._id));
-	}
-});
-
-Template.topicShowDeleteVote.events({
-	"click": function (event) {
-		var vote = Votes.findOne(myVote(this._id));
-
-        if (Meteor.user() && !this.completed && vote) {
-            Votes.remove(vote._id);
-        }
 	}
 });
 
